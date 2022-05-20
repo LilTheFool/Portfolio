@@ -22,8 +22,8 @@ window.addEventListener('resize', () => {
 }, false);
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(-9, 4, 14);
-camera.rotation.set(-0.06 * PI, 0, -0.015 * PI);
+camera.position.set(-9, 2, 14);
+camera.rotation.set(-0.01 * PI, 0, -0.015 * PI);
 
 // const loader = new ColladaLoader();
 // loader.load("Models/shep.dae", (collada) => {
