@@ -1,8 +1,6 @@
 import * as THREE from "https://unpkg.com/three@0.127.0/build/three.module.js";
 import { FBXLoader } from "https://unpkg.com/three@0.127.0/examples/jsm/loaders/FBXLoader.js"
 
-const PI = 3.14159
-
 let model
 
 // Create Scene
@@ -11,19 +9,32 @@ scene.background = new THREE.Color(0x282c34);
 
 const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight);
+var size = get_size()
+renderer.setSize(size);
 renderer.setPixelRatio(window.devicePixelRatio);
-document.getElementById('threejs').appendChild(renderer.domElement);
+const renderDom = renderer.domElement
+renderDom.width = size
+renderDom.height = size
+
+const three = document.getElementById('threejs')
+three.appendChild(renderer.domElement);
 
 window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    size = get_size()
+    renderer.setSize(size);
+    renderDom.width = size
+    renderDom.height = size
 }, false);
 
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+function get_size() {
+    var minLength = Math.min(window.innerWidth, window.innerHeight)
+    console.log(minLength)
+    return minLength * 0.8
+}
+
+const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
 camera.position.set(-9, 2, 14);
-camera.rotation.set(-0.01 * PI, 0, -0.015 * PI);
+camera.rotation.set(-0.01 * Math.PI, 0, -0.015 * Math.PI);
 
 // const loader = new ColladaLoader();
 // loader.load("Models/shep.dae", (collada) => {
@@ -38,7 +49,7 @@ const loader = new FBXLoader();
 loader.load("shep.fbx", 
     (obj) => {
         obj.scale.set(0.01, 0.01, 0.01);
-        obj.rotation.set(0.01 * PI, -0.315 * PI, 0.02 * PI);
+        obj.rotation.set(0.01 * Math.PI, -0.315 * Math.PI, 0.02 * Math.PI);
         scene.add(obj)
     },
     (xhr) => {
