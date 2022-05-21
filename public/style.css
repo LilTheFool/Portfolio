@@ -5,3 +5,7 @@ html, body {
     width: 100%;
     background-color: #282c34;
 }
+
+#WebGl {
+    border: 1px solid red
+}
