@@ -1,11 +1,24 @@
-html, body {
+body {
     margin: 0;
     overflow: hidden;
     height: 100%;
     width: 100%;
-    background-color: #282c34;
+    background-color: #28272b;
+    background-image: url("stars.png");
+    background-size: 50%;
+}
+
+#dialogue {
+    position: absolute;
+    bottom: 10vh;
+    left: 5vw;
+    top: 10vh;
+    background: white;   
 }
 
 #WebGl {
-    border: 1px solid red
+    background: none;
+    position: absolute;
+    right: 0px;
+    bottom: 5vh;
 }
